@@ -503,6 +503,7 @@ static int handle_query
       if (rpcd->dev != NULL)
       {
 	/* already opened */
+	PRINTF("hack: already open\n");
 	err = 0;
 	goto on_error;
       }
@@ -522,10 +523,14 @@ static int handle_query
     {
       uint32_t did;
 
+	PRINTF("hack: keeping open\n");
+
+/*
       if (rtlsdr_rpc_msg_pop_uint32(q, &did)) goto on_error;
       if ((rpcd->dev == NULL) || (rpcd->did != did)) goto on_error;
       err = rtlsdr_close(rpcd->dev);
       rpcd->dev = NULL;
+*/
 
       break ;
     }
