@@ -15,6 +15,7 @@
 #include <netdb.h>
 #include <rtl-sdr.h>
 #include "rtlsdr_rpc_msg.h"
+#include <signal.h>
 
 
 #if 1
@@ -1104,6 +1105,10 @@ int main(int ac, char** av)
   rpcd_t rpcd;
   const char* addr;
   const char* port;
+
+
+  PRINTF("hack: ignoring sigpipe\n");
+  signal(SIGPIPE, SIG_IGN);
 
   addr = getenv("RTLSDR_RPC_SERV_ADDR");
   if (addr == NULL) addr = "0.0.0.0";
